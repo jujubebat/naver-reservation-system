@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class CategoryDao {
+  
   private NamedParameterJdbcTemplate jdbc;
   private RowMapper<Category> rowMapper = BeanPropertyRowMapper.newInstance(Category.class);
 
@@ -23,4 +24,5 @@ public class CategoryDao {
   public List<Category> selectAll() {
     return jdbc.query(SELECT_ALL, Collections.emptyMap(), rowMapper);
   }
+  
 }

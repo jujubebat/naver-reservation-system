@@ -2,26 +2,26 @@ document.addEventListener("DOMContentLoaded", function () {
    tabUserInterfaceObj.getProducts(0);
    document.querySelectorAll('.item > .anchor')[0].className = "anchor active";
    promotionObj.getPromotions();
-   tabUserInterfaceObj.tabButtonEventRegister();
-   tabUserInterfaceObj.getProductsEventRegister();
+   tabUserInterfaceObj.registerTabButtonEvent();
+   tabUserInterfaceObj.registerGetProductsEvent();
 });
 
 var promotionObj = {
 
    getPromotions() {
-
       var oReq = new XMLHttpRequest();
       oReq.addEventListener("load", function () {
          data = JSON.parse(this.responseText);
+
+         var template = document.querySelector("#promotionItem").innerHTML;
+         var bindTemplate = Handlebars.compile(template);
          var resultHTML = "";
-         var promotionItem = document.querySelector("#promotionItem").innerHTML;
 
          for (var i = 0, len = data.items.length; i < len; i++) {
-            resultHTML += promotionItem.replace("{url}", data.items[i].productImageUrl);
+            resultHTML += bindTemplate(data.items[i]);
          }
-
+         
          document.querySelector(".container_visual > ul").innerHTML = resultHTML;
-
          promotionObj.slidePromotionImage(data.items.length);
       });
 
@@ -75,14 +75,14 @@ var tabUserInterfaceObj = {
       });
 
       if (categoryId == 0) {
-         oReq.open("GET", "http://localhost:8080/reservation/api/products?start=" + tabUserInterfaceObj.start);
+         oReq.open("GET", "http://localhost:8080/reservation/api/products?start=" + this.start);
       }
       else
-         oReq.open("GET", "http://localhost:8080/reservation/api/products?categoryId=" + this.categoryId + "&start=" + tabUserInterfaceObj.start);
+         oReq.open("GET", "http://localhost:8080/reservation/api/products?categoryId=" + this.categoryId + "&start=" + this.start);
       oReq.send();
    },
 
-   getProductsEventRegister() {
+   registerGetProductsEvent() {
       button = document.querySelector('.more .btn');
       button.addEventListener("click", function (evt) {
          tabUserInterfaceObj.getProducts(tabUserInterfaceObj.categoryId);
@@ -90,17 +90,12 @@ var tabUserInterfaceObj = {
    },
 
    setProductElements(data) {
-      document.querySelector(".pink").innerText = tabUserInterfaceObj.totalCount + "개"; //카테코리별 product 개수 표시
-      var itemList = document.querySelector("#itemList").innerHTML;
+      document.querySelector(".pink").innerText = this.totalCount + "개"; //카테코리별 product 개수 표시
+      var template = document.querySelector("#itemList").innerHTML;
+      var bindTemplate = Handlebars.compile(template);
 
       for (var i = 0, len = data.items.length; i < len; i++) {
-         var tmp = "";
-         tmp += itemList.replace("{id}", data.items[i].productId)
-            .replace("{description}", data.items[i].productDescription)
-            .replace("{url}", data.items[i].productImageUrl)
-            .replace("{description}", data.items[i].productDescription)
-            .replace("{placeName}", data.items[i].placeName)
-            .replace("{content}", data.items[i].productContent);
+         tmp = bindTemplate(data.items[i]);
 
          if (i % 2 == 0) {
             this.leftColumElements += tmp;
@@ -108,14 +103,13 @@ var tabUserInterfaceObj = {
          else {
             this.rightColumElements += tmp;
          }
-
       }
 
       document.querySelector("#lst_event_box_1").innerHTML = this.leftColumElements;
       document.querySelector("#lst_event_box_2").innerHTML = this.rightColumElements;
    },
 
-   tabButtonEventRegister() {
+   registerTabButtonEvent() {
       tabElements = document.querySelector('.section_event_tab'); //tabElement 획득
 
       tabElements.addEventListener("click", function (evt) {
@@ -142,5 +136,3 @@ var tabUserInterfaceObj = {
 
    }
 }
-
-

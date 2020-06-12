@@ -1,6 +1,6 @@
 @font-face {
     font-family: "Naver booking Icons";
-    src: url(../font/Naver-booking-Icons.woff?456918077) format('woff');
+    src: url(../font/Naver-booking-Icons.woff) format('woff');
     font-weight: 400;
     font-style: normal
 }
@@ -126,11 +126,9 @@
     line-height: 1em;
     
 }
-
-
 @font-face {
     font-family: "Naver Icons";
-    src: url('../font/Naver-booking-Icons.woff?456918077') format('woff')
+    src: url(../font/Naver-Icons.woff) format('woff');
     font-weight: 400;
     font-style: normal
 }
@@ -151,9 +149,6 @@
     text-transform: none;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-image: url(../img/spr_book.png);
-    background-size: 400px 400px
-
 }
 .fn.fn-18 {
     font-size: 18px
@@ -834,13 +829,13 @@
     font-family: NanumGothicWebR;
     font-style: normal;
     font-weight: 400;
-    src: url(../font/NanumGothicRegular.woff?1703172120) format('woff');
+    src: url(../font/NanumGothicRegular.woff) format('woff');
 }
 @font-face {
     font-family: NanumGothicWebB;
     font-style: normal;
     font-weight: 400;
-    src: url(../font/NanumGothicRegular.woff?1703172120) format('woff');
+    src: url(../font/NanumGothicRegular.woff) format('woff');
 }
 @charset "utf-8";
 body,
@@ -1698,6 +1693,7 @@ hr {
     background-size: 330px 400px;
     font-size: 0
 }
+
 .spr_book2.ico_book_n {
     width: 16px;
     height: 15px;
@@ -1714,9 +1710,22 @@ hr {
     background-position: -235px -136px!important
 }
 .spr_book2.ico_arr2_rt {
-    width: 6px;
-    height: 11px;
-    background-position: -152px -33px
+    width: 14px; 
+    height: 24px;
+    background-position: -162px -48px;
+    transform: scale(2);
+}
+.spr_book2.ico_arr2_lt {
+    width: 13px;
+    height: 24px;
+    background-position: -151px -48px;
+    transform: scale(2);
+}
+.spr_book2.ico_arr2_lt.off {
+    display: none;
+}
+.spr_book2.ico_arr2_rt.off {
+    display: none;
 }
 .spr_book2.ico_vr {
     width: 50px;
@@ -13250,7 +13259,7 @@ select {
     overflow: hidden;
     display: inline-block;
     color: transparent;
-    background-image: url(../img/spr_book_event.a4add0e02c732ddee9d67e9a95622239.png);
+    background-image: url(../img/spr_book_event.png);
     background-size: 150px 50px;
     -webkit-background-size: 150px 50px;
     vertical-align: top;
@@ -14863,9 +14872,33 @@ body.en .subscribe_banner .subscribe_strapline {
 	display: inline;
 }
 
+.visual_img .img_thumb {
+	width: 423px;
+    height: 414px;
+    margin-left: -5px; 
+    filter: drop-shadow(16px 16px 20px black) invert(15%);
+}
+
 .visual_img img {
 	width: 419px;
     height: 318px;
     margin-left: -4px;
 }
 
+#down{
+    background-image: url(../img/spr_book.png);
+    background-size: 400px 400px;
+    width: 27px;
+    height: 27px;
+}
+
+#nameCard{
+    position: absolute;
+    color: white;
+    font-size: 2em;
+    width: 185px;
+    z-index: 1;
+    font-weight: 600;
+    top: 47%;
+    left: 28%;
+}

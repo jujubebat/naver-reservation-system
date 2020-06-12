@@ -1,8 +1,11 @@
 package com.naver.reservation.dao;
 
 import static com.naver.reservation.dao.ProductPriceDaoSqls.SELECT_BY_PRODUCT_ID;
+import static com.naver.reservation.dao.ProductPriceDaoSqls.SELECT_PRICE_BY_PRODUCT_ID;
 
 import com.naver.reservation.dto.api.ProductPrice;
+
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,4 +32,11 @@ public class ProductPriceDao {
     params.put("productId", productId);
     return jdbc.query(SELECT_BY_PRODUCT_ID, params, rowMapper);
   }
+
+  public int selectPriceByProductId(Integer productId) {
+    Map<String, Integer> params = new HashMap<>();
+    params.put("productId", productId);
+    return jdbc.queryForObject(SELECT_PRICE_BY_PRODUCT_ID, params, Integer.class);
+  }
+
 }

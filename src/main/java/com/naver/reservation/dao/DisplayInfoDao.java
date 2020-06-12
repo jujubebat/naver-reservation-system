@@ -25,6 +25,7 @@ public class DisplayInfoDao {
    * displayInfo 반환.
    */
   public DisplayInfo selectByDisplayInfoId(Integer displayInfoId) {
+    
     Map<String, Integer> params = new HashMap<>();
     params.put("displayInfoId", displayInfoId);
     return jdbc.queryForObject(SELECT_BY_DISPLAY_INFO_ID, params, rowMapper);

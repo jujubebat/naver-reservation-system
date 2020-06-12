@@ -23,9 +23,10 @@ public class CommentServiceImpl implements CommentService {
 
   @Override
   public List<Comment> getCommentsWithImagesByProductId(Integer productId) {
+
     List<Comment> comments = commentDao.selectByProductId(productId);
 
-    for (Comment comment : comments) {
+    for (Comment comment : comments) { // 객체는 참조형태이므로 이런식으로 원본 리스트 수정이 가능하다.
       List<CommentImage> commentImages =
           commentImageService.getCommentImageByCommentId(comment.getCommentId());
       comment.setCommentImages(commentImages);

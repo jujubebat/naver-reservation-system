@@ -18,6 +18,9 @@ public class DisplayInfoServiceImpl implements DisplayInfoService {
 
   @Override
   public DisplayInfo getDisplayInfoById(Integer id) {
+
     return displayInfoDao.selectByDisplayInfoId(id);
+    
   }
+  
 }

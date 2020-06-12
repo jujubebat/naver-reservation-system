@@ -15,19 +15,19 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @ComponentScan(basePackages = {"com.naver.reservation.controller"})
 public class WebMvcContextConfiguration extends WebMvcConfigurerAdapter {
 
-  private static final int ONE_YEAR = 31556926;
+  private static final int SEC_IN_A_YEAR = 60 * 60 * 24 *356;
 
   /**
    * 특정 URL 요청을 특정 폴더로 매핑해준다.
    */
   @Override
   public void addResourceHandlers(ResourceHandlerRegistry registry) {
-    registry.addResourceHandler("/css/**").addResourceLocations("/css/").setCachePeriod(ONE_YEAR);
-    registry.addResourceHandler("/img/**").addResourceLocations("/img/").setCachePeriod(ONE_YEAR);
+    registry.addResourceHandler("/css/**").addResourceLocations("/css/").setCachePeriod(SEC_IN_A_YEAR);
+    registry.addResourceHandler("/img/**").addResourceLocations("/img/").setCachePeriod(SEC_IN_A_YEAR);
     registry.addResourceHandler("/img_map/**").addResourceLocations("/img_map/")
-        .setCachePeriod(ONE_YEAR);
-    registry.addResourceHandler("/js/**").addResourceLocations("/js/").setCachePeriod(ONE_YEAR);
-    registry.addResourceHandler("/font/**").addResourceLocations("/font/").setCachePeriod(ONE_YEAR);
+        .setCachePeriod(SEC_IN_A_YEAR);
+    registry.addResourceHandler("/js/**").addResourceLocations("/js/").setCachePeriod(SEC_IN_A_YEAR);
+    registry.addResourceHandler("/font/**").addResourceLocations("/font/").setCachePeriod(SEC_IN_A_YEAR);
   }
 
   /**
@@ -48,7 +48,7 @@ public class WebMvcContextConfiguration extends WebMvcConfigurerAdapter {
   }
 
   /**
-   * 특뷰의 위치와 파일 형식을 설정.
+   * 특정 뷰의 위치와 파일 형식을 설정.
    */
   @Bean
   public InternalResourceViewResolver getInternalResourceViewResolver() {
