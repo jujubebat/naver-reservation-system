@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -44,9 +47,17 @@
 								class="spr_bi ico_bk_logo">예약</span>
 							</a>
 						</h1>
-						<a href="./myreservation.html" class="btn_my"> <span
-							class="viewReservation" title="예약확인">예약확인</span>
-						</a>
+						<c:if test="${empty reservationEmail}">
+							<a href="./bookinglogin" class="btn_my"> <span
+								class="viewReservation" title="예약확인">예약확인</span>
+							</a>
+						</c:if>
+
+						<c:if test="${not empty reservationEmail}">
+							<a
+								href="./myreservation.html?reservationEmail=${reservationEmail}"
+								class="btn_my"> <span class="viewReservation" title="예약확인">${reservationEmail}</span></a>
+						</c:if>
 					</header>
 
 
@@ -104,16 +115,12 @@
 						<p class="dsc"></p>
 					</div>
 
-					<a href="#" class="bk_more _close" style="display: none;">
-      					<span class="bk_more_txt">접기</span>
-      					<i class="fn fn-up2"></i>
-   					</a> 
-   
-   					<a href="#" class="bk_more _open">
-      					<span class="bk_more_txt">펼쳐보기</span>
-      					<i class="fn fn-down2"></i>
-   					</a>
-					
+					<a href="#" class="bk_more _close" style="display: none;"> <span
+						class="bk_more_txt">접기</span> <i class="fn fn-up2"></i>
+					</a> <a href="#" class="bk_more _open"> <span class="bk_more_txt">펼쳐보기</span>
+						<i class="fn fn-down2"></i>
+					</a>
+
 				</div>
 
 				<div class="section_event">
@@ -124,24 +131,16 @@
 							</h4>
 						</div>
 						<div class="event_info">
-                            [네이버예약 특별할인]
-                            <div class="in_dsc">
-                                
-                            </div>
-                        </div>
+							[네이버예약 특별할인]
+							<div class="in_dsc"></div>
+						</div>
 					</div>
 				</div>
-				<div class="section_btn">
-					<button type="button" class="bk_btn">
-						<i class="fn fn-nbooking-calender2"></i> <span>예매하기</span>
-					</button>
-				</div>
+				<div class="section_btn"></div>
 				<div class="section_review_list">
 					<div class="review_box">
 						<h3 class="title_h3">예매자 한줄평</h3>
 						<div class="short_review_area">
-
-							
 
 							<ul class="list_short_review">
 
@@ -201,34 +200,26 @@
 		</div>
 	</footer>
 	<div id="photoviwer"></div>
-	
+
 	<!-- jQuery 라이브러리 -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 	<!-- handler 라이브러리 -->
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.6/handlebars.min.js"
 		integrity="sha256-usTqAE1ywvdMtksWzdeWzD75MsfJN0h0U7y2NtZL3N0="
 		crossorigin="anonymous"></script>
-		
+
 	<script src="../reservation/js/detail.js"></script>
 
 	<!-- 최상단 슬라이드 이미지-->
 	<script type="rv-template" id="detailImage">
-        
-        <li class="item" style="width: 414px;"> <img alt="" class="img_thumb" src="http://localhost:8080/reservation/{{saveFileName}}"> 
-                
-            <!--
-            <span class="img_bg"></span>
-             <div class="visual_txt">
-                <div class="visual_txt_inn">
-                    <h2 class="visual_txt_tit"> <span></span> </h2>
-                    <p class="visual_txt_dsc"></p>
-                </div>
-             </div> 
-            -->
 
-        </li>                         
+        <li class="item" style="width: 414px;"> <img alt="" class="img_thumb" src="http://localhost:8080/reservation/{{saveFileName}}"> 
+
+		</li>     
+		
     </script>
 
 	<!--댓글점수--->
@@ -268,15 +259,22 @@
             </div>
         </li>
     </script>
-    
-     <!-- 이벤트 정보 -->
-    <script type="rv-template" id="eventInfo">
+
+	<!-- 이벤트 정보 -->
+	<script type="rv-template" id="eventInfo">
         <span>{{priceTypeName}}석 {{discountRate}}%</span>
-    </script>
+	</script>
+
+	<!-- 예매하기 -->
+	<script type="rv-template" id="reserve">
+		<button type="button" class="bk_btn" onclick="location.href='./reserve?id={{displayInfoId}}' ">
+			<i class="fn fn-nbooking-calender2"></i> <span>예매하기</span>
+		</button>
+	</script>
 
 	<!-- 한줄평 더보기 -->
 	<script type="rv-template" id="moreReview">
-        <a class="btn_review_more" href="./review.html?id={{displayInfoId}}"> <span>예매자 한줄평 더보기</span> <i class="fn fn-forward1"></i> </a>
+        <a class="btn_review_more" href="./review?id={{displayInfoId}}"><span>예매자 한줄평 더보기</span><i class="fn fn-forward1"></i></a>
     </script>
 
 	<!-- 하단 tap ui 오시는길 -->

@@ -2615,7 +2615,7 @@ select {
     moz-box-sizing: border-box
 }
 .btn_lang .language {
-    font-size: 20px;
+    font-size: 19px;
     color: #fff;
     font-weight: 300
 }
@@ -3828,6 +3828,7 @@ select {
 .img_thumb {
     width: 100%;
     vertical-align: top
+    
 }
 .img_bg {
     left: 0;
@@ -8706,7 +8707,7 @@ select {
     text-decoration: underline
 }
 .err {
-    padding: 104px 20px;
+    padding: 65px 20px;
     text-align: center
 }
 .err .tit {
@@ -12628,7 +12629,7 @@ select {
 .section_my .wrap_mylist .list_cards .card .card_header .left {
     overflow: hidden;
     display: table-cell;
-    background-image: url(../img/bg_card_hl.a7ffb87998b587ca23a71c27005968e3.png);
+    background-image: url(../img/bg_card_hl.png);
     background-size: 12px 54px;
     background-repeat: no-repeat;
     width: 12px;
@@ -12639,7 +12640,7 @@ select {
     position: relative;
     overflow: hidden;
     display: table-cell;
-    background-image: url(../img/bg_card_hm.a10d60249d2c0bfeae4e43872efd4dc6.gif);
+    background-image: url(../img/bg_card_hm.gif);
     background-size: auto 54px;
     background-repeat: repeat-x;
     width: 100%;
@@ -12663,7 +12664,7 @@ select {
 .section_my .wrap_mylist .list_cards .card .card_header .right {
     overflow: hidden;
     display: table-cell;
-    background-image: url(../img/bg_card_hr.74dfb00a0690d65842d2c5422746eb8f.png);
+    background-image: url(../img/bg_card_hr.png);
     background-size: 12px 54px;
     background-repeat: no-repeat;
     width: 12px;
@@ -12676,7 +12677,7 @@ select {
 .section_my .wrap_mylist .list_cards .card .card_body .left {
     overflow: hidden;
     display: table-cell;
-    background-image: url(../img/bg_card_bl.b68f4f817f2db0fe67fd14cf0f61d7cf.png);
+    background-image: url(../img/bg_card_bl.png);
     background-size: 12px 2px;
     background-repeat: repeat-y;
     width: 12px;
@@ -12745,7 +12746,8 @@ select {
 }
 .section_my .wrap_mylist .list_cards .card .card_body .middle .card_detail .price_summary {
     margin-top: 9px;
-    border-top: 1px solid #f2f2f2
+    border-top: 1px solid #f2f2f2;
+    margin-bottom : 9px;
 }
 .section_my .wrap_mylist .list_cards .card .card_body .middle .card_detail .price_summary:after,
 .section_my .wrap_mylist .list_cards .card .card_body .middle .card_detail .price_summary:before {
@@ -12782,7 +12784,7 @@ select {
 .section_my .wrap_mylist .list_cards .card .card_body .right {
     overflow: hidden;
     display: table-cell;
-    background-image: url(../img/bg_card_br.34419dca3592c75bba96f7719631af2a.png);
+    background-image: url(../img/bg_card_br.png);
     background-size: 12px 2px;
     background-repeat: repeat-y;
     width: 12px;
@@ -12795,7 +12797,7 @@ select {
 .section_my .wrap_mylist .list_cards .card .card_footer .left {
     overflow: hidden;
     display: table-cell;
-    background-image: url(../img/bg_card_fl.a911bb5db7afcb21c60fe7ba266c5544.png);
+    background-image: url(../img/bg_card_fl.png);
     background-size: 12px 2px;
     background-repeat: no-repeat;
     width: 12px;
@@ -12805,7 +12807,7 @@ select {
 .section_my .wrap_mylist .list_cards .card .card_footer .middle {
     overflow: hidden;
     display: table-cell;
-    background-image: url(../img/bg_card_fm.d0c8003df69f0e2260eba676aaebee2a.png);
+    background-image: url(../img/bg_card_fm.png);
     background-size: 100% 2px;
     background-repeat: no-repeat;
     width: 100%;
@@ -12815,7 +12817,7 @@ select {
 .section_my .wrap_mylist .list_cards .card .card_footer .right {
     overflow: hidden;
     display: table-cell;
-    background-image: url(../img/bg_card_fr.0e88f0d5674957378484a8f4ac25d486.png);
+    background-image: url(../img/bg_card_fr.png);
     background-size: 12px 2px;
     background-repeat: no-repeat;
     width: 12px;
@@ -12827,22 +12829,22 @@ select {
     display: table-row
 }
 .section_my .wrap_mylist .list_cards .card.confirmed .card_header .left {
-    background-image: url(../img/bg_card2_hl.f70c96cf7f6a2720495b01ca39e6db5c.png)
+    background-image: url(../img/bg_card2_hl.png)
 }
 .section_my .wrap_mylist .list_cards .card.confirmed .card_header .middle {
-    background-image: url(../img/bg_card2_hm.22cbf1a3a347b04325c051f96a26357a.gif)
+    background-image: url(../img/bg_card2_hm.gif)
 }
 .section_my .wrap_mylist .list_cards .card.confirmed .card_header .right {
-    background-image: url(../img/bg_card2_hr.937b0ae0db26a1bf0b393169c4a89efe.png)
+    background-image: url(../img/bg_card2_hr.png)
 }
 .section_my .wrap_mylist .list_cards .card.used .card_header .left {
-    background-image: url(../img/bg_card3_hl.19b7d137491a85a144dae8680c8af30d.png)
+    background-image: url(../img/bg_card3_hl.png)
 }
 .section_my .wrap_mylist .list_cards .card.used .card_header .middle {
-    background-image: url(../img/bg_card3_hm.a7c318bb0891f1b2fa8b79e4bbc42467.gif)
+    background-image: url(../img/bg_card3_hm.gif)
 }
 .section_my .wrap_mylist .list_cards .card.used .card_header .right {
-    background-image: url(../img/bg_card3_hr.3e541c7bab208d774154ee7f51ae3835.png)
+    background-image: url(../img/bg_card3_hr.png)
 }
 .subscribe_banner {
     margin-top: 9.5px;
@@ -14901,4 +14903,26 @@ body.en .subscribe_banner .subscribe_strapline {
     font-weight: 600;
     top: 47%;
     left: 28%;
+}
+
+.booking_cancel{
+    font-size: 17px;
+    text-align: center;
+    background-color: #f0f0f0;
+    width: 334px;
+    height: 35px;
+    border: 0.5px solid #e7e9ed;
+}
+
+.reservation_review{
+    font-size: 17px;
+    text-align: center;
+    background-color: #f0f0f0;
+    width: 334px;
+    height: 35px;
+    border: 0.5px solid #e7e9ed;
+}
+
+.card_item{
+    margin-bottom: 6px;
 }

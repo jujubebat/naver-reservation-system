@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -25,9 +26,18 @@
 						class="spr_bi ico_bk_logo">예약</span>
 					</a>
 				</h1>
-				<a href="" class="btn_my"> <span class="viewReservation"
-					title="예약확인">예약확인</span>
-				</a>
+
+				<c:if test="${empty reservationEmail}">
+					<a href="./bookinglogin" class="btn_my"> <span
+						class="viewReservation" title="예약확인">예약확인</span>
+					</a>
+				</c:if>
+
+				<c:if test="${not empty reservationEmail}">
+					<a href="./myreservation.html?reservationEmail=${reservationEmail}"
+						class="btn_my"> <span class="viewReservation" title="예약확인">${reservationEmail}</span></a>
+				</c:if>
+
 			</header>
 		</div>
 		<hr>
@@ -42,7 +52,7 @@
 			</div>
 			<div class="section_event_tab">
 				<ul class="event_tab_lst tab_lst_min">
-					<li class="item"><a class="anchor" data-category="0">
+					<li class="item"><a class="anchor active" data-category="0">
 							전체리스트 </a></li>
 					<li class="item"><a class="anchor" data-category="1"> 전시 </a>
 					</li>
@@ -100,7 +110,7 @@
 
 	<script type="rv-template" id="itemList">
         <li class="item">
-            <a href="http://localhost:8080/reservation/detail?id={{productId}}" class="item_book">
+            <a href="detail.html?id={{displayInfoId}}" class="item_book">
                 <div class="item_preview">
                     <img alt="{{productDescription}}" class="img_thumb" src="http://localhost:8080/reservation/{{productImageUrl}}">
                     <span class="img_border"></span>
@@ -113,4 +123,5 @@
         </li>
     </script>
 </body>
+
 </html>

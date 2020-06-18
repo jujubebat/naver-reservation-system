@@ -20,5 +20,25 @@ public class ReservationController {
   public String review() {
     return "review";
   }
-
+  
+  @GetMapping(path = "/reserve")
+  public String reserve() {
+    return "reserve";
+  }
+  
+  @GetMapping(path = "/bookinglogin")
+  public String bookinglogin() {
+    return "bookinglogin";
+  }
+  
+  @GetMapping(path = "/myreservation")
+  public String myreservation() {
+    return "myreservation";
+  }
+  
+  @GetMapping(path = "/reviewWrite")
+  public String reviewWrite() {
+    return "reviewWrite";
+  }
+  
 }

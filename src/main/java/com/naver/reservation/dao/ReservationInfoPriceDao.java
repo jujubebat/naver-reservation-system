@@ -66,7 +66,6 @@ public class ReservationInfoPriceDao {
   }
 
   public List<ReservationInfoPrice> selectByReservationInfoId(int reservationInfoId) {
-    System.out.println(reservationInfoId);
 
     Map<String, Integer> params = new HashMap<>();
     params.put("reservationInfoId", reservationInfoId);
