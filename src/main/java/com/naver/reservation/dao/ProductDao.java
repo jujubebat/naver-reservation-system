@@ -18,6 +18,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class ProductDao {
+  
   private NamedParameterJdbcTemplate jdbc;
   private RowMapper<Product> rowMapper = BeanPropertyRowMapper.newInstance(Product.class);
 
@@ -25,9 +26,6 @@ public class ProductDao {
     this.jdbc = new NamedParameterJdbcTemplate(dataSource);
   }
 
-  /**
-   * start(순번), limit(데이터 개수)를 인자로 받아 Products를 select 한다.
-   */
   public List<Product> selectAll(Integer start, Integer limit) {
     Map<String, Integer> params = new HashMap<>();
     params.put("start", start);
@@ -35,9 +33,6 @@ public class ProductDao {
     return jdbc.query(SELECT_ALL, params, rowMapper);
   }
 
-  /**
-   * categoryId(카테고리 아이디), start(순번), limit(데이터 개수)를 인자로 받아 카테고리별로 Products를 select 한다.
-   */
   public List<Product> selectByCategoryId(Integer categoryId, Integer start, Integer limit) {
     Map<String, Integer> params = new HashMap<>();
     params.put("categoryId", categoryId);
@@ -46,11 +41,11 @@ public class ProductDao {
     return jdbc.query(SELECT_BY_CATEGORY_ID, params, rowMapper);
   }
 
-  public int selectCount() { // 모든 product 개수
+  public int selectCount() { 
     return jdbc.queryForObject(SELECT_COUNT, Collections.emptyMap(), Integer.class);
   }
 
-  public int selectCountByCategory(Integer categoryId) { // 카테고리별 product 개수
+  public int selectCountByCategory(Integer categoryId) { 
     Map<String, Integer> params = Collections.singletonMap("categoryId", categoryId);
     return jdbc.queryForObject(SELECT_COUNT_BY_CATEGORY_ID, params, Integer.class);
   }

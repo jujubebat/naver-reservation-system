@@ -23,13 +23,11 @@ public class ProductService {
   }
 
   public List<Product> getProductsByCategoryId(Integer categoryId, Integer start) {
-
     if (categoryId == 0) {
       return productsdao.selectAll(start, ProductService.LIMIT);
     } else {
       return productsdao.selectByCategoryId(categoryId, start, ProductService.LIMIT);
     }
-
   }
 
   public int getCount() {

@@ -17,9 +17,7 @@ public class DisplayInfoService {
   }
 
   public DisplayInfo getDisplayInfoById(Integer id) {
-
     return displayInfoDao.selectByDisplayInfoId(id);
-    
   }
   
 }

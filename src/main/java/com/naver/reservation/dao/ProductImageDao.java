@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class ProductImageDao {
+  
   private NamedParameterJdbcTemplate jdbc;
   private RowMapper<ProductImage> rowMapper = BeanPropertyRowMapper.newInstance(ProductImage.class);
 
@@ -21,9 +22,6 @@ public class ProductImageDao {
     this.jdbc = new NamedParameterJdbcTemplate(dataSource);
   }
 
-  /**
-   * product의 productImage 반환.
-   */
   public List<ProductImage> selectByProductId(Integer productID) {
     Map<String, Integer> params = new HashMap<>();
     params.put("productID", productID);

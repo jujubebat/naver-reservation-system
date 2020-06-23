@@ -5,7 +5,6 @@ import com.naver.reservation.dto.api.DisplayInfoImage;
 import com.naver.reservation.service.DisplayInfoImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class DisplayInfoImageService {
@@ -20,6 +19,7 @@ public class DisplayInfoImageService {
   public DisplayInfoImage getDisplayInfoImageByDisplayInfoId(Integer displayInfoId) {
     return displayInfoImageDao.selectByDisplayInfoId(displayInfoId);
   }
+  
 }
 
 

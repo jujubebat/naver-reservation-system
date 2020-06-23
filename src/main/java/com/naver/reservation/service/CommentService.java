@@ -1,7 +1,7 @@
 package com.naver.reservation.service;
 
 import com.naver.reservation.dao.CommentDao;
-import com.naver.reservation.dto.api.Comment;
+import com.naver.reservation.dto.api.CommentDetail;
 import com.naver.reservation.dto.api.CommentImage;
 import com.naver.reservation.service.CommentImageService;
 import com.naver.reservation.service.CommentService;
@@ -21,11 +21,10 @@ public class CommentService {
     this.commentDao = commentDao;
   }
 
-  public List<Comment> getCommentsWithImagesByProductId(Integer productId) {
+  public List<CommentDetail> getCommentsWithImagesByProductId(Integer productId) {
+    List<CommentDetail> comments = commentDao.selectByProductId(productId);
 
-    List<Comment> comments = commentDao.selectByProductId(productId);
-
-    for (Comment comment : comments) { // 객체는 참조형태이므로 이런식으로 원본 리스트 수정이 가능하다.
+    for (CommentDetail comment : comments) { // 객체는 참조형태이므로 이런식으로 원본 리스트 수정이 가능하다.
       List<CommentImage> commentImages =
           commentImageService.getCommentImageByCommentId(comment.getCommentId());
       comment.setCommentImages(commentImages);
@@ -37,4 +36,5 @@ public class CommentService {
   public double getProductAverageScoreByProductId(Integer productId) {
     return commentDao.selectAverageScoreByProductId(productId);
   }
+  
 }

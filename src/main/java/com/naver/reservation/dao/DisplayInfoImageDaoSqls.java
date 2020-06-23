@@ -1,6 +1,7 @@
 package com.naver.reservation.dao;
 
 public class DisplayInfoImageDaoSqls {
+  
   public static final String SELECT_BY_ID = 
         "SELECT display_info_image.id AS display_info_image_id, \r\n" 
       + "       display_info_id, \r\n" 
@@ -17,4 +18,5 @@ public class DisplayInfoImageDaoSqls {
       + "       INNER JOIN file_info \r\n" 
       + "               ON display_info_image.file_id = file_info.id \r\n" 
       + "WHERE  display_info_id = :displayInfoId";
+  
 }

@@ -1,6 +1,7 @@
 package com.naver.reservation.dao;
 
 public class ProductImageDaoSqls {
+  
   public static final String SELECT_BY_PRODUCT_ID = 
         "SELECT product_id, \r\n" 
       + "       product_image.id AS product_image_id, \r\n" 

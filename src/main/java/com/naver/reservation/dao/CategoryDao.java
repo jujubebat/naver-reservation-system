@@ -1,6 +1,6 @@
 package com.naver.reservation.dao;
 
-import static com.naver.reservation.dao.CategoryDaoSqls.SELECT_ALL; // static import는 최상위에 한 칸 띄어서 배치한다.
+import static com.naver.reservation.dao.CategoryDaoSqls.SELECT_ALL; // static import는 최상위에 한 칸 띄어서 배치.
                                                                    
 import com.naver.reservation.dto.api.Category;
 import java.util.Collections;

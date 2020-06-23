@@ -8,7 +8,8 @@ public class ProductDaoSqls {
       + "       description              AS productDescription, \r\n" 
       + "       display_info.place_name, \r\n" 
       + "       content                  AS productContent, \r\n" 
-      + "       file_info.save_file_name AS productImageUrl \r\n" 
+      + "       file_info.save_file_name AS productImageUrl, \r\n" 
+      + "       file_info.id AS fileId \r\n"
       + "FROM   product \r\n" 
       + "       INNER JOIN display_info \r\n" 
       + "               ON product.id = display_info.product_id \r\n" 
@@ -25,7 +26,8 @@ public class ProductDaoSqls {
       + "       description              AS productDescription, \r\n" 
       + "       display_info.place_name, \r\n" 
       + "       content                  AS productContent, \r\n" 
-      + "       file_info.save_file_name AS productImageUrl \r\n" 
+      + "       file_info.save_file_name AS productImageUrl, \r\n" 
+      + "       file_info.id AS fileId \r\n"
       + "FROM   product \r\n" 
       + "       INNER JOIN display_info \r\n" 
       + "               ON product.id = display_info.product_id \r\n" 
@@ -47,7 +49,6 @@ public class ProductDaoSqls {
       + "       INNER JOIN file_info \r\n" 
       + "               ON product_image.file_id = file_info.id \r\n" 
       + "WHERE  product_image.type = 'th'";
-
 
   public static final String SELECT_COUNT_BY_CATEGORY_ID =
         "SELECT Count(*) \r\n" 

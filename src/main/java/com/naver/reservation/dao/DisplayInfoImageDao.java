@@ -21,14 +21,10 @@ public class DisplayInfoImageDao {
     this.jdbc = new NamedParameterJdbcTemplate(dataSource);
   }
   
-  /**
-   * displayInfo의 displayInfoImage 반환.
-   */
   public DisplayInfoImage selectByDisplayInfoId(Integer displayInfoId) {   
     Map<String, Integer> params = new HashMap<>();
     params.put("displayInfoId", displayInfoId);
     return jdbc.queryForObject(SELECT_BY_ID, params, rowMapper);
-    
   }
   
 }

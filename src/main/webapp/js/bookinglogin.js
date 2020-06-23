@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function BookingLoginPage() {
-    this.isRight = false; // 이메일 유효성 검사 flag.
 }
 
 
@@ -37,14 +36,12 @@ BookingLoginPage.prototype.registercheckDataValidationEvent = function () { // �
         var form = document.querySelector(".login_input");
 
         if (!page.checkDataValidation(form)) {
-            alert("올바르지 않은 이메일 형식 입니다.");
-            page.isRight = false;
+            alert("올바르지 않은 이메일 형식 입니다.\n example@naver.com 형식으로 입력해주세요.");
             document.querySelector(".login_btn").className = "login_btn confirm";
-            document.querySelector(".login_btn").disabled = true; // 로그인 버튼 활성화.
+            document.querySelector(".login_btn").disabled = true; // 로그인 button 태그 활성화.
         } else {
-            page.isRight = true;
             document.querySelector(".login_btn").className = "login_btn";
-            document.querySelector(".login_btn").disabled = false; // 로그인 버튼 비활성화.
+            document.querySelector(".login_btn").disabled = false; // 로그인 button 태그 비활성화.
         }
     }
 

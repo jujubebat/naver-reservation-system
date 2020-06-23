@@ -42,7 +42,7 @@ ReservePage.prototype.initReservePage = function () {
     this.getDisplayInfo();
     // 랜덤 예약 날짜를 서버에서 받아온다. (플젝 특성상 그냥 임의로 예약날짜 구하기 위해서 만든것)
     // 오늘 날짜기준 1~5 범위의 날짜를 서버에서 랜덤으로 보내줌. 
-    this.getReservationDate();
+    //this.getReservationDate();
 
 }
 
@@ -52,7 +52,7 @@ ReservePage.prototype.getDisplayInfo = function () {
 
     oReq.addEventListener("load", function () {
         page.data = JSON.parse(this.responseText);
-        page.setReservePage();
+        page.getReservationDate();
     });
 
     oReq.open("GET", this.getUrl + this.id);
@@ -67,7 +67,7 @@ ReservePage.prototype.getReservationDate = function () {
     oReq.addEventListener("load", function () {
         var dateData = JSON.parse(this.responseText);
         page.reservationDate = dateData.reservationDate;
-        console.log(dateData);
+        page.setReservePage();
     });
 
     oReq.open("GET", this.getRandomDateUrl);
@@ -194,7 +194,7 @@ ReservePage.prototype.registerTicketButtonEvent = function (plusButton, isAdd) {
             page.ticketCountInfo.set(ticketNumber, parseInt(evt.path[1].querySelector("input").value));
         }
 
-        evt.path[2].querySelector(".total_price").innerText = ticketPrice * page.ticketCountInfo.get(ticketNumber);
+        evt.path[2].querySelector(".total_price").innerText = (ticketPrice * page.ticketCountInfo.get(ticketNumber)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
         var priceElements = document.querySelectorAll(".qty");
 
@@ -202,7 +202,7 @@ ReservePage.prototype.registerTicketButtonEvent = function (plusButton, isAdd) {
         var ticketTotalPrice = 0;
 
         for (var i = 0, len = priceElements.length; i < len; i++) {
-            ticketTotalPrice += parseInt(priceElements[i].querySelector(".total_price").innerText);
+            ticketTotalPrice += parseInt(priceElements[i].querySelector(".total_price").innerText.replace(",",""));
             ticketTotalCount += parseInt(priceElements[i].querySelector(".count_control_input").value);
         }
 
@@ -408,7 +408,9 @@ ReservePage.prototype.registercheckDataValidationEvent = function () { // 유효
         var form = document.querySelector("#name");
 
         if (!page.checkDataValidation(form, "name"))
-            alert("예매자명이 올바르지 않습니다.");
+            alert("예매자명이 올바르지 않습니다.\n 특수문자를 제외한 예매자명을 입력해주세요.");
+        else
+            form.style.color = "black";
 
         page.checkReservationInfoValidation(); // 값 입력이 종료될때마다 유효성 검사. 
     }
@@ -417,7 +419,9 @@ ReservePage.prototype.registercheckDataValidationEvent = function () { // 유효
         var form = document.querySelector(".tel");
 
         if (!page.checkDataValidation(form, "tel"))
-            alert("연락처가 올바르지 않습니다.");
+            alert("연락처가 올바르지 않습니다.\n 010-XXXX-XXX 또는 지역 번호 형식으로 입력해주세요. ");
+        else
+            form.style.color = "black";
 
         page.checkReservationInfoValidation();
     }
@@ -426,7 +430,9 @@ ReservePage.prototype.registercheckDataValidationEvent = function () { // 유효
         var form = document.querySelector(".email");
 
         if (!page.checkDataValidation(form, "email"))
-            alert("이메일이 올바르지 않습니다.");
+            alert("이메일이 올바르지 않습니다.\n example@naver.com 형식으로 입력해주세요. ");
+        else
+            form.style.color = "black";
 
         page.checkReservationInfoValidation();
     }

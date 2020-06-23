@@ -83,7 +83,7 @@
                         <!-- commentImages의 url을 통해 댓글당 이미지들을 templating 해준다. -->
                         <div class="thumb_area">
                             <a href="#" class="" title="이미지 크게 보기"> <img width="90" height="90" class="img_vertical_top"
-                                    src="http://localhost:8080/reservation/{{saveFileName}}" alt="리뷰이미지"> </a> 
+                                    src="http://localhost:8080/reservation/api/file/{{fileId}}" alt="리뷰이미지"> </a> 
                         </div>
                         {{/each}}
                         {{/if}}

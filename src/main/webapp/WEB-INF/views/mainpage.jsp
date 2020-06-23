@@ -105,14 +105,14 @@
 		crossorigin="anonymous"></script>
 
 	<script type="rv-template" id="promotionItem">
-        <li><img src="http://localhost:8080/reservation/{{productImageUrl}}"/></li>
+        <li><img src="http://localhost:8080/reservation/api/file/{{fileId}}"/></li>
     </script>
 
 	<script type="rv-template" id="itemList">
         <li class="item">
-            <a href="detail.html?id={{displayInfoId}}" class="item_book">
+            <a href="detail.html?id={{displayInfoId}}" class="item_book" tabindex="0">
                 <div class="item_preview">
-                    <img alt="{{productDescription}}" class="img_thumb" src="http://localhost:8080/reservation/{{productImageUrl}}">
+                    <img alt="{{productDescription}}" class="img_thumb" src="http://localhost:8080/reservation/api/file/{{fileId}}">
                     <span class="img_border"></span>
                 </div>
                 <div class="event_txt">

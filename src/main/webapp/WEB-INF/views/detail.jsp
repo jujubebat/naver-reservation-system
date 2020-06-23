@@ -158,10 +158,10 @@
 				<div class="section_info_tab">
 					<!-- [D] tab 선택 시 anchor에 active 추가 -->
 					<ul class="info_tab_lst">
-						<li class="item active _detail"><a class="anchor active">
+						<li class="item active _detail"><a class="anchor active" tabindex="0">
 								<span>상세정보</span>
 						</a></li>
-						<li class="item _path"><a class="anchor"> <span>오시는길</span>
+						<li class="item _path"><a class="anchor" tabindex="0"> <span>오시는길</span>
 						</a></li>
 					</ul>
 					<!-- [D] 상세정보 외 다른 탭 선택 시 detail_area_wrap에 hide 추가 -->
@@ -216,7 +216,7 @@
 	<!-- 최상단 슬라이드 이미지-->
 	<script type="rv-template" id="detailImage">
 
-        <li class="item" style="width: 414px;"> <img alt="" class="img_thumb" src="http://localhost:8080/reservation/{{saveFileName}}"> 
+        <li class="item" style="width: 414px;"> <img alt="" class="img_thumb" src="http://localhost:8080/reservation/api/file/{{fileInfoId}}"> 
 
 		</li>     
 		
@@ -244,7 +244,7 @@
                         {{#each commentImages}} <!-- commentImages의 url을 통해 댓글당 이미지들을 templating 해준다. -->
                             <div class="thumb_area">
                                 <a href="#" class="" title="이미지 크게 보기"> 
-                                    <img width="90" height="90" class="img_vertical_top" src="http://localhost:8080/reservation/{{saveFileName}}" alt="리뷰이미지"> 
+                                    <img width="90" height="90" class="img_vertical_top" src="http://localhost:8080/reservation/api/file/{{fileId}}" alt="리뷰이미지"> 
                                 </a> 
                                 <span class="img_count" style="display:none;">1</span>   
                         </div>
@@ -281,7 +281,7 @@
 	<script type="rv-template" id="locationImage">
         <div class="box_store_info no_topline">
             <a href="#" class="store_location" title="지도웹으로 연결">
-                <img class="store_map img_thumb" alt="map" src="http://localhost:8080/reservation/{{saveFileName}}">
+                <img class="store_map img_thumb" alt="map" src="http://localhost:8080/reservation/api/file/{{fileId}}">
                 <span class="img_border"></span>
                 <span class="btn_map"><i class="spr_book2 ico_mapview"></i></span>
             </a>

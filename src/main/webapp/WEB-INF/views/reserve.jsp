@@ -57,14 +57,14 @@
                                 <div class="inline_form"> <label class="label" for="name"> <span
                                             class="spr_book ico_nessasary">필수</span> <span>예매자</span> </label>
                                     <div class="inline_control"> <input type="text" name="name" id="name" class="text"
-                                            placeholder="네이버" maxlength="17"> </div>
+                                            placeholder="홍길동" maxlength="17"> </div>
                                 </div>
 
                                 <div class="inline_form"> <label class="label" for="tel"> <span
                                             class="spr_book ico_nessasary">필수</span> <span>연락처</span> </label>
                                     <div class="inline_control tel_wrap">
                                         <input type="text" name="tel" id="tel" class="tel" value=""
-                                            placeholder="휴대폰 입력 시 예매내역 문자발송">
+                                            placeholder="010-XXXX-XXXX">
                                         <div class="warning_msg"></div>
                                     </div>
                                 </div>
@@ -165,7 +165,7 @@
 
     <!-- displayImage -->
     <script type="rv-template" id="displayImage">
-        <img alt="" class="img_thumb" src="http://localhost:8080/reservation/{{saveFileName}}">
+        <img alt="" class="img_thumb" src="http://localhost:8080/reservation/api/file/{{fileInfoId}}">
     </script>
 
     <!-- displayInfo -->
@@ -187,9 +187,9 @@
         <div class="qty" data-index-number = "{{productPriceId}}">
             <div class="count_control">
                 <div class="clearfix">
-                    <a class="btn_plus_minus spr_book2 ico_minus3 disabled" title="빼기"></a>
+                    <a class="btn_plus_minus spr_book2 ico_minus3 disabled" title="빼기" tabindex="0"></a>
                     <input type="tel" class="count_control_input disabled" value="0" readonly title="수량">
-                    <a class="btn_plus_minus spr_book2 ico_plus3" title="더하기"></a>
+                    <a class="btn_plus_minus spr_book2 ico_plus3" title="더하기" tabindex="0"></a>
                 </div>
                 <div class="individual_price">
                     <span class="total_price">0</span><span class="price_type">원</span>

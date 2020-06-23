@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class PromotionDao {
+  
   private NamedParameterJdbcTemplate jdbc;
   private RowMapper<Promotion> rowMapper = BeanPropertyRowMapper.newInstance(Promotion.class);
 
@@ -23,4 +24,5 @@ public class PromotionDao {
   public List<Promotion> selectAll() {
     return jdbc.query(SELECT_ALL, Collections.emptyMap(), rowMapper);
   }
+  
 }

@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.TransactionManagementConfigure
 @EnableTransactionManagement
 @PropertySource("classpath:application.properties")
 public class DBConfig implements TransactionManagementConfigurer {
-
+  
   @Value("${spring.datasource.driver-class-name}")
   private String driverClassName;
 
@@ -28,9 +28,6 @@ public class DBConfig implements TransactionManagementConfigurer {
   @Value("${spring.datasource.password}")
   private String password;
 
-  /**
-   * dataSource을 통한 DB 설정 빈.
-   */
   @Bean
   public DataSource dataSource() {
     BasicDataSource dataSource = new BasicDataSource();
@@ -50,4 +47,5 @@ public class DBConfig implements TransactionManagementConfigurer {
   public PlatformTransactionManager transactionManger() {
     return new DataSourceTransactionManager(dataSource());
   }
+  
 }

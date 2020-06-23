@@ -10,6 +10,7 @@ public @Data class Product {
   private String placeName;
   private String productContent;
   private String productImageUrl;
+  private int fileId;
 
 }
 

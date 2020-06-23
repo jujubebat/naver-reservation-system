@@ -4,8 +4,6 @@ import static com.naver.reservation.dao.ProductPriceDaoSqls.SELECT_BY_PRODUCT_ID
 import static com.naver.reservation.dao.ProductPriceDaoSqls.SELECT_PRICE_BY_PRODUCT_ID;
 
 import com.naver.reservation.dto.api.ProductPrice;
-
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,6 +15,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class ProductPriceDao {
+  
   private NamedParameterJdbcTemplate jdbc;
   private RowMapper<ProductPrice> rowMapper = BeanPropertyRowMapper.newInstance(ProductPrice.class);
 
@@ -24,9 +23,6 @@ public class ProductPriceDao {
     this.jdbc = new NamedParameterJdbcTemplate(dataSource);
   }
 
-  /**
-   * product의 price 정보를 리턴.
-   */
   public List<ProductPrice> selectByProductId(Integer productId) {
     Map<String, Integer> params = new HashMap<>();
     params.put("productId", productId);

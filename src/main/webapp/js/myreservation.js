@@ -1,12 +1,13 @@
 var page;
 
 document.addEventListener("DOMContentLoaded", function () {
-    
+
     SearchParams = new URLSearchParams(location.search)
     var email = SearchParams.get("reservationEmail");
 
     page = new MyReservationPage(email);
     page.initMyReservationPage();
+
 
 });
 
@@ -25,31 +26,38 @@ MyReservationPage.prototype.initMyReservationPage = function () {
 
     this.registerHandlbarHelperFcuntion();
     this.getReservationInfos();
+
 }
 
 MyReservationPage.prototype.registerHandlbarHelperFcuntion = function () {
 
-    Handlebars.registerHelper("isExpired", function (reservationDate) {
+    Handlebars.registerHelper("isExpired", function (reservationDate, productId, reservationInfoId, productDescription) {
+
+        // productDescription 중 끝에 개행문자를 가진 데이터가 존재함. 개행문자를 포함하면 html syntax 오류가 나서 이렇게 개행 문제 제거.
+        productDescription = productDescription.replace("\n", "");
 
         var reservMonth = parseInt(reservationDate[5] + reservationDate[6]);
         var reservDay = parseInt(reservationDate[8] + reservationDate[9]);
-
         var curDate = new Date();
         var curMonth = curDate.getMonth() + 1;
         var curDay = curDate.getDate();
 
-        if(reservMonth < curMonth) 
-            return new Handlebars.SafeString('<button class="reservation_review">' + "예매자 리뷰 남기기" + "</button>");
-        else if(reservMonth == curMonth){
-            if(reservDay <= curDay){
-                return new Handlebars.SafeString('<button class="reservation_review">' + "예매자 리뷰 남기기" + "</button>");
-            }else{
-                return new Handlebars.SafeString('<button class="booking_cancel">' + "예매 취소" + "</button>");
+        if (reservMonth < curMonth)
+            return new Handlebars.SafeString("<button class=\"reservation_review\" onclick=\"location.href='" + "reviewWrite?productId=" + productId + "&reservationInfoId=" + reservationInfoId + "&productDescription=" + productDescription + "'\">" + "예매자 리뷰 남기기");
+        else if (reservMonth == curMonth) {
+            if (reservDay <= curDay) {
+                return new Handlebars.SafeString("<button class=\"reservation_review\" onclick=\"location.href='" + "reviewWrite?productId=" + productId + "&reservationInfoId=" + reservationInfoId + "&productDescription=" + productDescription + "'\">" + "예매자 리뷰 남기기");
+            } else {
+                return new Handlebars.SafeString("<button class=\"booking_cancel\">" + "예매 취소" + "</button>");
             }
-        }else {
-            return new Handlebars.SafeString('<button class="booking_cancel">' + "예매 취소" + "</button>");
+        } else {
+            return new Handlebars.SafeString("<button class=\"booking_cancel\">" + "예매 취소" + "</button>");
         }
 
+    });
+
+    Handlebars.registerHelper("currencyFormat", function(number) {
+        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     });
 
 }
@@ -63,6 +71,9 @@ MyReservationPage.prototype.getReservationInfos = function () {
         page.setReservations();
         page.setReservationCount();
         page.registerCancelPopUpEvent();
+
+        document.querySelector(".btn_my").href = "./myreservation.html?reservationEmail=" + page.email;
+        document.querySelector(".viewReservation").innerText = page.email;
     });
 
     oReq.open("GET", this.getUrl + this.email);
@@ -75,7 +86,7 @@ MyReservationPage.prototype.setReservations = function () {
     this.usedRservationCount = 0;
     this.canceledRservationCount = 0;
 
-    var template = document.querySelector("#detailReservationInfo").innerHTML; // handler 로직
+    var template = document.querySelector("#detailReservationInfo").innerHTML; // handlebar 로직
     var bindTemplate = Handlebars.compile(template);
     var confirmedRservation = "";
     var usedRservation = "";
@@ -89,10 +100,10 @@ MyReservationPage.prototype.setReservations = function () {
 
         } else { // 취소된 예약이 아닐 경우 -> 예약 확정 예약과 예약 완료 예약 구분.
 
-            if(this.isExpired(this.data.reservations[i].reservationDate)){ // 예약일자가 오늘 날짜 이상이라면 -> 이용 완료로 간주.
+            if (this.isExpired(this.data.reservations[i].reservationDate)) { // 예약일자가 오늘 날짜 이상이라면 -> 이용 완료로 간주.
                 usedRservation += bindTemplate(this.data.reservations[i]);
                 this.usedRservationCount++;
-            }else{ // 예약일자가 오늘 날짜 미만이라면 -> 예약 확정으로 간주.
+            } else { // 예약일자가 오늘 날짜 미만이라면 -> 예약 확정으로 간주.
                 confirmedRservation += bindTemplate(this.data.reservations[i]);
                 this.confirmedRservationCount++;
             }
@@ -101,14 +112,14 @@ MyReservationPage.prototype.setReservations = function () {
 
     }
 
-    var emptyReservation = document.querySelector("#emptyReservationInfo").innerHTML; // handler 로직
+    var emptyReservation = document.querySelector("#emptyReservationInfo").innerHTML; // handlebar 로직
 
     if (this.confirmedRservationCount === 0)
         document.querySelectorAll(".card")[0].querySelector(".card_item_list").innerHTML = emptyReservation;
     else
         document.querySelectorAll(".card")[0].querySelector(".card_item_list").innerHTML = confirmedRservation;
 
-    if(this.usedRservationCount === 0)
+    if (this.usedRservationCount === 0)
         document.querySelectorAll(".card")[1].querySelector(".card_item_list").innerHTML = emptyReservation;
     else
         document.querySelectorAll(".card")[1].querySelector(".card_item_list").innerHTML = usedRservation;
@@ -177,15 +188,15 @@ MyReservationPage.prototype.isExpired = function (reservationDate) {
     var curMonth = curDate.getMonth() + 1;
     var curDay = curDate.getDate();
 
-    if(reservMonth < curMonth) 
+    if (reservMonth < curMonth)
         return true;
-    else if(reservMonth == curMonth){
-        if(reservDay <= curDay){
+    else if (reservMonth == curMonth) {
+        if (reservDay <= curDay) {
             return true;
-        }else{
+        } else {
             return false;
         }
-    }else {
+    } else {
         return true;
     }
 

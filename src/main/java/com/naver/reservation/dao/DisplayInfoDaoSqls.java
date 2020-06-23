@@ -1,6 +1,7 @@
 package com.naver.reservation.dao;
 
 public class DisplayInfoDaoSqls {
+  
   public static final String SELECT_BY_DISPLAY_INFO_ID = 
         "SELECT product_id, \r\n" 
       + "       category_id, \r\n" 
@@ -24,4 +25,5 @@ public class DisplayInfoDaoSqls {
       + "       INNER JOIN category \r\n" 
       + "               ON product.category_id = category.id \r\n" 
       + "WHERE  display_info.id = :displayInfoId";
+  
 }

@@ -1,6 +1,7 @@
 package com.naver.reservation.dao;
 
 public class CommentDaoSqls {
+  
   public static final String SELECT_BY_PRODUCT_ID = 
         "SELECT reservation_user_comment.id      AS comment_id, \r\n"  
       + "       reservation_user_comment.product_id, \r\n" 

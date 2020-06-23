@@ -1,9 +1,7 @@
 package com.naver.reservation.dto.api.returnObject;
 
-import java.util.List;
-
 import com.naver.reservation.dto.api.Promotion;
-
+import java.util.List;
 import lombok.Data;
 
 public @Data class PromotionList {

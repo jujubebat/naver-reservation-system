@@ -20,4 +20,5 @@ public class PromotionService {
   public List<Promotion> getPromotions() {
     return promotionsDao.selectAll();
   }
+  
 }

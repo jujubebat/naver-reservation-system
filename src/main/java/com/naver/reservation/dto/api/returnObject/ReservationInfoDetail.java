@@ -2,9 +2,7 @@ package com.naver.reservation.dto.api.returnObject;
 
 import com.naver.reservation.dto.api.DisplayInfo;
 import com.naver.reservation.dto.api.Reservation;
-
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 public @Data class ReservationInfoDetail extends Reservation {
 

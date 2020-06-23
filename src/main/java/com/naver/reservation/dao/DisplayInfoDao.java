@@ -11,7 +11,6 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-
 @Repository
 public class DisplayInfoDao {
   private NamedParameterJdbcTemplate jdbc;
@@ -21,15 +20,10 @@ public class DisplayInfoDao {
     this.jdbc = new NamedParameterJdbcTemplate(dataSource);
   }
 
-  /**
-   * displayInfo 반환.
-   */
   public DisplayInfo selectByDisplayInfoId(Integer displayInfoId) {
-    
     Map<String, Integer> params = new HashMap<>();
     params.put("displayInfoId", displayInfoId);
     return jdbc.queryForObject(SELECT_BY_DISPLAY_INFO_ID, params, rowMapper);
-
   }
 
 }

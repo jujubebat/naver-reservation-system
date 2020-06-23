@@ -3,25 +3,24 @@ package com.naver.reservation.dao;
 import static com.naver.reservation.dao.ReservationInfoDaoSqls.SELECT_BY_EMAIL;
 import static com.naver.reservation.dao.ReservationInfoDaoSqls.SELECT_BY_ID;
 import static com.naver.reservation.dao.ReservationInfoDaoSqls.UPDATE_CANCEL_FLAG_BY_ID;
+
+import com.naver.reservation.dto.api.returnObject.ReservationInfo;
+import com.naver.reservation.dto.api.returnObject.ReservationInfoDetail;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import javax.sql.DataSource;
-
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
-import com.naver.reservation.dto.api.returnObject.ReservationInfoDetail;
-import com.naver.reservation.dto.api.returnObject.ReservationInfo;
-
 @Repository
 public class ReservationInfoDao {
+  
   private NamedParameterJdbcTemplate jdbc;
   private SimpleJdbcInsert insertAction;
   private RowMapper<ReservationInfoDetail> detailRowMapper =
@@ -36,7 +35,6 @@ public class ReservationInfoDao {
   }
 
   public int insertReservationInfo(ReservationInfo reservationInfoResult) {
-
     Map<String, Object> params = new HashMap<>();
 
     params.put("product_id", reservationInfoResult.getProductId());
@@ -50,16 +48,13 @@ public class ReservationInfoDao {
     params.put("modify_date", reservationInfoResult.getModifyDate());
 
     return insertAction.executeAndReturnKey(params).intValue();
-
   }
 
   public List<ReservationInfoDetail> selectByEmail(String email) {
-
     Map<String, String> params = new HashMap<>();
     params.put("email", email);
 
     return jdbc.query(SELECT_BY_EMAIL, params, detailRowMapper);
-
   }
 
   public ReservationInfo selectById(int reservationInfoId) {

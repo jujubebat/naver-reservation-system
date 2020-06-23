@@ -3,6 +3,7 @@ package com.naver.reservation.dto.api;
 import lombok.Data;
 
 public @Data class ProductPrice {
+  
   private int productPriceId;
   private int productId;
   private String priceTypeName;
@@ -10,4 +11,5 @@ public @Data class ProductPrice {
   private int discountRate;
   private String createDate;
   private String modifyDate;
+  
 }

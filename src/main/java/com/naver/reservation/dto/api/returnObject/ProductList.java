@@ -1,12 +1,11 @@
 package com.naver.reservation.dto.api.returnObject;
 
-import java.util.List;
-
 import com.naver.reservation.dto.api.Product;
-
+import java.util.List;
 import lombok.Data;
 
 public @Data class ProductList {
+  
   private int totalCount;
   private List<Product> items;
 
